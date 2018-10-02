@@ -1,0 +1,118 @@
+{% url 'home' as home_url%}
+{% url 'profile:profile-page' as profile_url%}
+{% url 'books:list' as books_list_url%}
+{% url 'login' as login_url%}
+{% url 'logout' as logout_url%}
+{% url 'register' as register_url%}
+{% url 'cart:home' as cart_url%}
+{% url 'student-register:list' as student_reg_url %}
+{% url 'student-register:issue-book' as issue_url %}
+{% url 'student-register:return-book' as return_url %}
+{% url 'student-register:register-student' as reg_student_url %}
+{% url 'books:register-books' as reg_book_url %}
+{% url 'profile:confirm-profile' as confirm_profile_url %}
+
+<nav class="navbar navbar-expand-md mb-3 navbar-dark bg-dark"><div class="container">
+
+
+    <a class="navbar-brand" href="{{ home_url }}"><img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">{% if brand_name %} Recliba<!--{{ brand_name }}--> {% else %}Recliba {% endif %}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item {% if request.path == home_url %}active{% endif %}">
+
+          <!-- Perfect example
+          We can use active only when home page is there
+          for that
+          <li class="nav-item {% if request.path == home_url %}active{% endif %}">-->
+
+        <!--<a class="nav-link " href="{{ home_url }}">Home <span class="sr-only">(current)</span></a>-->
+      <!--</li>-->
+        {% if request.user.is_staff == False and request.user.is_authenticated %}
+      <li class="nav-item {% if request.path == profile_url %}active{% endif %}">
+        <a class="nav-link" href="{{ profile_url }}">Profile</a>
+      </li>{% endif %}
+      <li class="nav-item {% if request.path == books_list_url %}active{% endif %}">
+        <a class="nav-link" href="{{ books_list_url }}">Books</a>
+      </li>
+        {{ request.object  }}
+        {% if request.user.is_librarian %}
+<li class="nav-item {% if request.path == student_reg_url %}active{% endif %}">
+        <a class="nav-link" href="{% url 'student-register:list' %}">Records</a>
+      </li>
+<li class="nav-item {% if request.path == issue_url %}active{% endif %}">
+        <a class="nav-link" href="{% url 'student-register:issue-book' %}">Issue</a>
+      </li>
+
+        <li class="nav-item {% if request.path == return_url %}active{% endif %}">
+        <a class="nav-link" href="{% url 'student-register:return-book' %}">Return</a>
+      </li>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          More
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'student-register:register-student' %}">Register Students</a>
+          <a class="dropdown-item" href="{% url 'books:register-books' %}">Register Books</a>
+            <a class="dropdown-item" href="{% url 'profile:confirm-profile' %}">Pending Requests</a>
+
+            <!--<div class="dropdown-divider"></div>-->
+          <!--<a class="dropdown-item" href="#">Something else here</a>-->
+        </div>
+         <!--<li class="nav-item {% if request.path == reg_student_url %}active{% endif %}">-->
+        <!--<a class="nav-link" href="{% url 'student-register:register-student' %}">Register Students</a>-->
+      <!--</li>-->
+    <!--<li class="nav-item {% if request.path == reg_book_url %}active{% endif %}">-->
+        <!--<a class="nav-link" href="{% url 'books:register-books' %}">Register Books</a>-->
+      <!--</li>-->
+<!--<li class="nav-item {% if request.path == confirm_profile_url %}active{% endif %}">-->
+        <!--<a class="nav-link" href="{% url 'profile:confirm-profile' %}">Pending Requests</a>-->
+      <!--</li>-->
+
+       {% endif %}
+        {% if request.user.is_authenticated %}
+
+<li class="nav-item">
+        <a class="nav-link" href="{{ logout_url }}">Log0ut</a>
+      </li>
+{% else %}
+<li class="nav-item {% if request.path == login_url %}active{% endif %}">
+        <a class="nav-link" href="{{ login_url }}"> Login</a>
+      </li>
+<li class="nav-item {% if request.path == register_url %}active{% endif %}">
+        <a class="nav-link" href="{{ register_url }}">Register</a>
+      </li>
+        {% endif %}
+<!--<li class="nav-item {% if request.path == cart_url %}active{% endif %}">-->
+        <!--<a class="nav-link" href="{{ cart_url }}">{{ request.session.cart_items }} <i class="fas fa-shopping-cart"></i> </a>-->
+      <!--</li>-->
+
+      <!--<li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>-->
+   <!-- <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>-->
+
+    </ul>
+      {% include 'search/snippets/search-form.html' %}
+  </div>
+    </div>
+
+</nav>

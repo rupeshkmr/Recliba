@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% for obj in object %}
+    <div class="row"><div class="col-12 ">
+        {% if forloop.first %}
+        <h3>Student Details</h3><br/></div></div>
+    <div class="row"><div class="col-6 ">
+        Name: {{ obj.student.name }} {{obj.name}}<br/></div>
+    <div class="col-6 ">
+       Roll No: {{ obj.student.roll_no }}  {{obj.roll_no}}<br/></div></div>
+
+    <div class="row"><div class="col-6 ">
+       Batch: {{ obj.student.batch }} {{obj.batch}} <br/></div>
+
+    <div class="col-6 ">
+       Year: {{ obj.student.year }} {{obj.year}} <br/></div></div>
+    <div class="row"><div class="col-12  "><d><hr/></d></div></div>{% endif %}
+{% endfor %}
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">S No.</th>
+      <th scope="col">Book Name</th>
+      <th scope="col">Book No.</th>
+      <th scope="col">Issue Date</th>
+      <th scope="col" >Due Date</th>
+      <th scope="col">Return Date</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for obj in object %}
+  <tr>{% if obj.book %}
+      <th scope="row">{{forloop.counter}}</th>
+        <td>{{ obj.book.name }}
+        </td>
+      <td>{{ obj.book_no }}</td>
+      <td>{{ obj.issue_date }}</td>
+      <td {% if obj.is_past_due %}style="font-weight:bold;color:red;"{% endif %}>{{ obj.due_date }}</td>
+      <td>{{ obj.return_date }}</td>
+      <td>{% if  obj.status  %}Returned{% else %} <!--<a href="{% url 'student-register:update' obj.id %}" clas-->Not Returned<!--</a>--> {% endif %}</td>
+{% endif %}
+    </tr>{% endfor %}
+    </tbody>
+</table>
+{% for obj in object %}{% if forloop.first %}
+    <div class="row"><div class="col-12 ">
+        {% if obj.student.books_issued != 10  %}
+<a href="{% url 'student-register:issue-book' %}" class="btn btn-success btn-sm btn-block" role="button" aria-pressed="true">Issue Book</a>
+
+        {% endif %} </div></div>
+{% endif %}
+{% endfor %}
+
+
+{% endblock %}
+

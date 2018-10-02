@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row"><div class="col">
+    <h1>Register Students</h1>
+</div></div>
+<div class="row"><div class="col">
+    <h1><hr/></h1>
+</div></div>
+<br/>
+<form action="" method="post">{% csrf_token %}
+    <div class="row"><div class="col">
+        {% if form is None %}
+        <h3>Student with given roll number already exits</h3>
+        {% endif %}
+        Name:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ form.name }}</div>
+    <div class="col">
+        Roll No:&nbsp&nbsp&nbsp{{ form.roll_no }}
+        </div>
+     </div><br/>
+    <div class="row"><div class="col">Batch:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ form.batch }}</div>
+    <div class="col">
+        Year:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ form.year }}
+        </div>
+     </div>
+<br/>
+    <button type="submit" class="btn btn-success btn-sm btn-block">Submit</button>
+</form>
+{% endblock %}

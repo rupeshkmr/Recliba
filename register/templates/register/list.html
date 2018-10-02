@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% url 'student-register:detail' as student_url %}
+{% block content %}
+<div class="row">
+    <div class="col"><h1>Student Records</h1><hr/><br/></div>
+</div>
+<div class="row"><div class="col-5 mx-auto">
+     {% include 'search/snippets/student-record.html' %}<hr/><br/>
+</div></div>
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">S No.</th>
+      <th scope="col">Name</th>
+      <th scope="col">Roll No.</th>
+      <th scope="col">Batch</th>
+      <th scope="col">Year</th>
+      <th scope="col">Books issued</th>
+      <th scope="col">Total Books Issued</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for obj in object_list %}
+  <tr>
+      <th scope="row">{{forloop.counter}}</th>
+        <td><a href="{{ student_url }}{{obj.id}}">{{ obj.name }}</a>
+        </td>
+      <td>{{ obj.roll_no }}</td>
+      <td>{{ obj.batch }}</td>
+      <td>{{ obj.year }}</td>
+      <td>{{ obj.books_issued }}</td>
+      <td>{{ obj.books_issued_tilldate }}</td>
+
+    </tr>{% endfor %}
+    </tbody>
+</table>{% endblock %}
+
+
+we can also use
+
+{ if obj.title=="Something" %}
+
+{ endif %}
+

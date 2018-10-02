@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row"><div class="col"><h1>Issue Books</h1></div></div>
+<div class="row"><div class="col"><hr/></div></div>
+<div class="row"><div class="col-12 ">
+        <h3>Student Details</h3><br/></div></div>
+    <div class="row"><div class="col-6 ">
+        Name: {{ object.student.name }} {{obj.name}}<br/></div>
+    <div class="col-6 ">
+       Roll No: {{ object.student.roll_no }}  {{obj.roll_no}}<br/></div></div>
+
+    <div class="row"><div class="col-6 ">
+       Batch: {{ object.student.batch }} {{obj.batch}} <br/></div>
+
+    <div class="col-6 ">
+       Year: {{ object.student.year }} {{obj.year}} <br/></div></div>
+    <div class="row"><div class="col-12  "><d><hr/></d></div></div>
+
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user_list.first is None %}
+<div class="row"><div class="col">
+   No Pending Profile Requests
+</div></div>
+{% else %}
+<div class="row"><div class="col">
+    Pending Profile Requests
+</div></div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">S No.</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email Address</th>
+      <th scope="col">Designation</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+ {% for obj in object_list %}
+ <tr>{% for obj1 in user_list %}
+     {% if obj.user == obj1 %}
+      <th scope="row">{{forloop.counter}}</th>
+        <td> {{ obj.name }}
+        </td>
+      <td>{{ obj }}</td>
+      <td>{{ obj.req_desg }}</td>
+     <td>{% if obj.user.acc_on is True %}Active{% else %}<a href="/activate-account/{{obj.user.id}}">Inactive</a>{% endif %}</td>
+            {% endif %}
+    </tr>{% endfor %}{% endfor %}
+    </tbody>
+
+
+    </table>
+{% endif %}
+{% endblock %}
+
+
+

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}<div class="row"><div class="col"><h1>Books In the Recliba</h1><hr/><br/></div></div><div class="row">
+{% for obj in object_list %}
+    <div class="col">
+        {{forloop.counter}}
+ {% include 'books/snippets/card.html' with instance=obj %}
+  {% if forloop.counter|divisibleby:3 %}
+    </div></div><div class="row"><div class="col-12"><hr/></div>
+        {% else %}
+</div>
+
+        {% endif %}
+
+
+    {% endfor %}</div>
+{% endblock %}
+
+
+we can also use
+
+{ if obj.title=="Something" %}
+
+{ endif %}

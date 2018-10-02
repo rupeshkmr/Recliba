@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row"><div class="col">
+<h1>Update Profile Details</h1><br/><hr/>
+</div></div>
+<div class="row"><div class="col">
+
+</div></div>
+
+<form action="" method="post">{% csrf_token %}
+    <div class="row"><div class="col"><br/></div></div>
+    <div class="row"><div class="col">AADHAAR No.: {{ form.aadhaar }}</div></div>
+ <div class="row"><div class="col">Mobile No.: {{ form.mobile_no }}</div></div>
+
+<div class="row"><div class="col"><br/></div></div>
+
+    <button type="submit" class="btn btn-success btn-sm">Submit</button>
+</form>
+
+{% endblock %}

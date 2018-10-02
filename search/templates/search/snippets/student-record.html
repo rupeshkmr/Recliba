@@ -1,0 +1,6 @@
+  <form method="GET" action="{% url "student-register:list" %}" class="form ml-auto">
+      <div class="input-group">
+        <input class="form-control form-control-sm " type="search" placeholder="Search Student Records" name="q" aria-label="Search" value="{{request.GET.q}}">
+       <span class="input-group-btn">
+        <button class="btn btn-outline-success btn-sm " type="submit">Enter</button>
+    </span></div></form>

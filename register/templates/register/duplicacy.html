@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row"><div class="col">
+    <h3>Sorry!! The Book is already issued</h3>
+</div></div>
+
+{% for obj in object_list %}
+        <a class="btn btn-success btn-sm " role="button" aria-pressed="true" href="{% url 'student-register:issue' obj.id %}">Go Back</a>
+{% endfor %}
+{% endblock %}
+
+
+

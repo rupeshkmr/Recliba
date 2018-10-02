@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row"><div class="col">
+    <h1>Return Panel</h1><br/><hr/>
+</div></div>
+<form method="POST">{%csrf_token%}
+<div class="form-row ">
+    <div class="form-group col-lg-5 col-md-3 mx-auto ">
+    {{form.book}}
+    </div>
+    <div class="form-group col-lg-2 col-md-3 mx-auto ">
+<button type="submit" class="btn btn-success btn-sm ">Submit</button>
+    </div>
+</div>
+
+<br/>
+</form>
+<div class="row"><div class="col" style="font-weight:bold;color:red;">{{error}}{{register}}
+</div></div> 
+{% endblock %}

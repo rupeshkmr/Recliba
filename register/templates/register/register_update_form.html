@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row"><div class="col-12 ">
+        <h3>Student Details</h3><br/></div></div>
+    <div class="row"><div class="col-6 ">
+        Name: {{ object.student.name }} {{obj.name}}<br/></div>
+    <div class="col-6 ">
+       Roll No: {{ object.student.roll_no }}  {{obj.roll_no}}<br/></div></div>
+
+    <div class="row"><div class="col-6 ">
+       Batch: {{ object.student.batch }} {{obj.batch}} <br/></div>
+
+    <div class="col-6 ">
+       Year: {{ object.student.year }} {{obj.year}} <br/></div></div>
+    <div class="row"><div class="col-12  "><d><hr/></d></div></div>
+
+<div class="row"><div class="col-12 ">
+        <h3>Book Details</h3></div>
+    <div class="col-6 ">
+       Title: {{ object.book.title }}  <br/></div>
+    <div class="col-6 ">
+       Author:  {{ object.book.author }}  <br/></div>
+
+</div>
+<div class="row">
+    <div class="col-6 ">
+       Price: {{ object.book.price }}  <br/></div>
+    <div class="col-6 ">
+       Book No.: {{ object.book_no }}  <br/></div>
+
+</div>
+<form action="" method="post">{% csrf_token %}
+    <div class="row"><div class="col-12  "><d><hr/></d></div></div>
+ <div class="row"><div class="col-12  ">Issue Date:{{object.issue_date}}</div></div>
+<div class="row">
+    <div class="col-6 " {% if object.is_past_due %}style="font-weight:bold;color:red;"{% endif %}>
+       Due Date    :{{object.due_date}}  <br/></div>
+ <div class="col-6 " {% if object.is_past_due %}style="font-weight:bold;color:red;"{% endif %}>
+       Fine: {{object.fine}}{{form.fine}}  <br/></div>
+
+</div>
+
+    <div class="row"><div class="col-12  "><d><hr/></d></div></div>
+<div class="row">
+
+    <div class="col">    <button type="submit" class="btn btn-danger"> Return </button><div>
+
+</form></div>
+<div class="row">
+    <div class="col-8">  <br/>
+</div>
+
+<!--<div class="row">-->
+    <!--<div class="col"><a href="{% url 'student-register:issue-book' %}" class="btn btn-success">ReIssue</a></div>-->
+<!--</div>-->
+{% endblock %}

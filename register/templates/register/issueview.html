@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row mb-3">
+    {% if query %}
+    <div class="col-12 col-md-6  py-5">
+      <h1>Details</h1>
+ </div>
+
+        <div class="col-12"><hr/>
+        </div>
+    {% else %}
+    <div class="col-12 col-md-6 mx-auto py-5">
+       {% include 'search/snippets/issue-form.html' %}
+ </div>
+        <div class="col-12"><hr/>
+        </div>
+    {% endif %}
+    {% if  object_list >= 10 %}
+    <div class="row"  ><div class="col" > Sorry You Have exceeded your limit</div></div>
+    {% else %}{% if object_list != False %}
+</div>{% for obj in object_list %}
+<br/><div class="row"><div class="col">
+        <h1>Details</h1>
+    </div></div>
+<div class="row"><div class="col">
+     Student Name: {{ obj.student.name }}
+    </div>
+<div class="col">Roll No: {{ obj.student.roll_no }}</div>
+</div>
+<div class="row"><div class="col">
+     Batch: {{ obj.student.batch }}
+    </div>
+<div class="col">Year: {{ obj.student.year }}</div>
+</div>
+<div class="row"><div class="col">
+     Books Issued: {{ obj.student.books_issued }}
+    </div>
+</div>
+
+
+    <div class="row">
+    <div class="col">
+   <a href="{% url 'student-register:issue' obj.id %}" class="btn btn-success btn-sm " role="button" aria-pressed="true">Issue</a>
+   </div></div>{% endfor %}{% endif %}{% endif %}
+{% if object_list == False %}
+<div class="row">
+     <div class="col-12 py-5">
+    <h1>Please register first</h1><a href="{% url 'student-register:register-student' %}" class="btn btn-success btn-sm " role="button" aria-pressed="true">Register Student</a>
+   </div></div>
+{% endif %}
+
+{% endblock %}

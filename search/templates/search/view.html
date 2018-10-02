@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row mb-3">
+    {% if query %}
+    <div class="col-12 col-md-6 mx-auto py-5">
+       {% include 'search/snippets/search-form.html' %}
+ </div>
+
+        <div class="col-12"><hr/>
+        </div>
+    <div class="col-12 mb-3">
+        Results for <b>{{ query }}</b><hr/></div>
+    {% else %}
+    <div class="col-12 col-md-6 mx-auto py-5">
+       {% include 'search/snippets/search-form.html' %}
+ </div>
+
+        <div class="col-12"><hr/>
+        </div>
+    {% endif %}
+</div>
+
+<div class="row ">
+{% for obj in object_list %}
+    <div class="col">
+ {% include 'books/snippets/card.html' with instance=obj %}
+  {% if forloop.counter|divisibleby:3 %}
+    </div></div><div class="row "><div class="col-12"><hr/></div>
+        {% else %}
+</div>
+
+        {% endif %}
+
+
+    {% endfor %}
+{% endblock %}
+
+
+we can also use
+
+{ if obj.title=="Something" %}
+
+{ endif %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row"><div class="col">
+    <h1>Register Books</h1>
+</div></div>
+<div class="row"><div class="col">
+    <h1><hr/></h1>
+</div></div>
+<br/>
+<form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+    <div class="row"><div class="col">Title: {{ form.title }}</div>
+    <div class="col">
+        Author: {{ form.author }}
+        </div>
+     </div>
+    <div class="row"><div class="col">ISBN: {{ form.isbn }}</div></div><br/>
+    <div class="row"><div class="col">Copies: {{ form.total_copies }}</div>
+    <div class="col">
+        Price: {{ form.price }}
+        </div>
+     </div>
+    <br/>
+    <div class="row">
+    <div class="col">
+        Description: {{ form.description }}
+        </div>
+     </div><br/>
+    <div class="row">
+    <div class="col">
+        Image: {{ form.image }}
+        </div>
+     </div>
+    <br/>
+    <button type="submit" class="btn btn-success btn-sm btn-block">Submit</button>
+</form>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row mb-3">
+    {% if query %}
+    <div class="col-12 col-md-6  py-5">
+      <h1>Details</h1>
+ </div>
+
+        <div class="col-12"><hr/>
+        </div>
+    {% else %}
+    <div class="col-12 col-md-6 mx-auto py-5">
+       {% include 'search/snippets/return-form.html' %}
+ </div>
+        <div class="col-12"><hr/>
+        </div>
+    {% endif %}
+
+</div>
+<div class="row"><div class="col">
+    {% for obj in object_list %}
+    Student Name : {{obj.student.name}}</div></div>
+
+<div class="row"><div class="col">
+Book : {{ obj.book.title }}
+</div></div>
+
+<div class="row"><div class="col">
+Book No: {{ obj.book_no }}
+</div></div>
+
+<br/><div class="row"><div class="col">
+   <a href="{% url 'student-register:update' obj.id %}" class="btn btn-success btn-sm " role="button" aria-pressed="true">Return</a>
+    {% endfor %}
+</div></div>
+{% endblock %}
